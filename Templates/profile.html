@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>{{ user.username }}'s Profile</h1>
+
+    <section>
+        <h2>Personal Information</h2>
+        <p><strong>Username:</strong> {{ user.username }}</p>
+        <p><strong>Email:</strong> {{ user.email }}</p>
+        <p><strong>Bio:</strong> {{ userprofile.bio }}</p>
+    </section>
+
+    <section>
+        <h2>Edit Profile</h2>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div>
+                <label for="bio">Bio:</label>
+                <textarea id="bio" name="bio">{{ userprofile.bio }}</textarea>
+            </div>
+            <div>
+                <label for="profile_picture">Profile Picture:</label>
+                <input type="file" id="profile_picture" name="profile_picture">
+            </div>
+            <button type="submit">Update</button>
+        </form>
+    </section>
+
+{% endblock %}
